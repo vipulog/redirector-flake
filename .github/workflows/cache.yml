@@ -1,0 +1,16 @@
+name: Cache
+on:
+  workflow_dispatch:
+jobs:
+  cache:
+    name: Cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Build
+        run: nix build .#redirector -v -L
