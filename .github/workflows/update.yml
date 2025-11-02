@@ -1,0 +1,29 @@
+name: Update
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_auth_token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Update flake.lock
+        run: nix flake update -v -L
+      - name: Update Cargo.lock
+        run: nix run .#generate-lockfile -v -L
+      - name: Build
+        run: nix build .#redirector -v -L
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "chore: update dependencies"
+          file_pattern: flake.lock Cargo.lock
