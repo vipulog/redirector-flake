@@ -50,9 +50,9 @@
             package = lib.mkDefault pkgs.nix;
 
             settings = {
-              substituters = ["https://redirector.cachix.org"];
+              extra-substituters = lib.mkAfter ["https://redirector.cachix.org"];
 
-              extra-trusted-public-keys = [
+              extra-trusted-public-keys = lib.mkAfter [
                 "redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE="
               ];
             };
