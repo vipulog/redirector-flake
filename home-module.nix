@@ -49,13 +49,10 @@
           nix = {
             package = lib.mkDefault pkgs.nix;
 
-            settings = {
-              extra-substituters = lib.mkAfter ["https://redirector.cachix.org"];
-
-              extra-trusted-public-keys = lib.mkAfter [
-                "redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE="
-              ];
-            };
+            extraOptions = lib.mkAfter ''
+              extra-substituters = https://redirector.cachix.org
+              extra-trusted-public-keys = redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE=
+            '';
           };
 
           home = {
