@@ -22,25 +22,7 @@
         path = redirectorWithLock;
 
         profiles = {
-          dev.runTests = false;
           release.runTests = false;
-        };
-      };
-
-      crates.redirector = {
-        depsDrvConfig = {
-          mkDerivation = {
-            buildInputs = [pkgs.openssl];
-            nativeBuildInputs = [pkgs.pkg-config];
-          };
-        };
-
-        drvConfig = {
-          mkDerivation = {
-            buildInputs = [pkgs.openssl];
-            nativeBuildInputs = [pkgs.pkg-config];
-            meta.mainProgram = "redirector";
-          };
         };
       };
     };
