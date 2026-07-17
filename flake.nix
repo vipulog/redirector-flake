@@ -4,7 +4,7 @@
   outputs = inputs @ {flake-parts, ...}: (
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
-      imports = [./flake-parts.nix];
+      imports = [./modules];
     }
   );
 

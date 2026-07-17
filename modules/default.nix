@@ -7,7 +7,7 @@
     ./pre-commit.nix
     ./treefmt.nix
     ./shell.nix
-    ./packages.nix
+    ./packages
     ./checks.nix
     ./overlays.nix
     ./nci.nix
