@@ -46,15 +46,6 @@
         };
 
         config = lib.mkIf cfg.enable {
-          nix = {
-            package = lib.mkDefault pkgs.nix;
-
-            extraOptions = lib.mkAfter ''
-              extra-substituters = https://redirector.cachix.org
-              extra-trusted-public-keys = redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE=
-            '';
-          };
-
           home = {
             file.".config/redirector/config.toml".source = configFile;
             packages = [cfg.package];

@@ -58,10 +58,14 @@ nix run github:vipulog/redirector-flake#redirector
 
 1. Rebuild your Home Manager configuration.
 
-   The Home Manager module automatically configures the binary cache for you. However, this setting only applies *after* the first successful build. To avoid building from source on the first run, you can temporarily add the cache settings to your command:
+### Binary Cache
 
-   ```sh
-   home-manager switch --flake . --option extra-substituters "https://redirector.cachix.org" --option extra-trusted-public-keys "redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE="
-   ```
+To avoid building from source, you can optionally configure the provided Cachix
+cache in your Nix settings:
 
-   Subsequent runs of `home-manager switch` will not require these options.
+```nix
+nix.settings = {
+  substituters = [ "https://redirector.cachix.org" ];
+  trusted-public-keys = [ "redirector.cachix.org-1:lx9grKUxrkiq/H1qkIV/oEgRB9SmYGD2Yg37fHs6TlE=" ];
+};
+```
