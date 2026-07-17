@@ -19,7 +19,6 @@
       pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = [self.overlays.redirector];
-        config.allowUnfree = true;
       };
     };
   };
