@@ -21,6 +21,7 @@
       projects.redirector = {
         path = redirectorSrc;
         profiles.release.runTests = false;
+        drvConfig.mkDerivation.meta.mainProgram = "redirector";
       };
     };
   };
