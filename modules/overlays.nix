@@ -2,8 +2,10 @@
   flake.overlays = rec {
     default = redirector;
 
-    redirector = final: _prev: {
-      redirector = self.packages.${final.system}.redirector;
+    redirector = final: _prev: let
+      system = final.stdenv.hostPlatform.system;
+    in {
+      redirector = self.packages.${system}.redirector;
     };
   };
 }
