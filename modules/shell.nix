@@ -8,7 +8,6 @@
       inputsFrom = [
         config.pre-commit.devShell
         config.treefmt.build.devShell
-        config.nci.outputs.redirector.devShell
       ];
     };
   };
